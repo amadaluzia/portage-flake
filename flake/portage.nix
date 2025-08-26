@@ -1,10 +1,14 @@
-{python3, fetchFromGitHub, lib}: let
+{
+  python3,
+  fetchFromGitHub,
+  lib,
+}: let
   attrs = {
     pname = "portage";
     version = "3.0.68";
-    
+
     pyproject = true;
-    build-system = [ python3.pkgs.meson-python ];
+    build-system = [python3.pkgs.meson-python];
     src = fetchFromGitHub {
       owner = "gentoo";
       repo = "portage";

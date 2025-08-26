@@ -1,5 +1,5 @@
 {
-  outputs = inputs@{nixpkgs, ...}: let
+  outputs = inputs @ {nixpkgs, ...}: let
     forAllSystems = f:
       nixpkgs.lib.genAttrs (import inputs.systems) (system:
         f system nixpkgs.legacyPackages.${system});
@@ -7,6 +7,9 @@
     packages = forAllSystems (_: pkgs: {
       portage = pkgs.callPackage ./flake/portage.nix {};
     });
+    formatter =
+      forAllSystems
+      (_: pkgs: pkgs.callPackage ./flake/formatter.nix {});
   };
   inputs = {
     nixpkgs = {
@@ -18,7 +21,7 @@
     systems = {
       type = "github";
       owner = "nix-values";
-      repo = "default";
+      repo = "default-linux";
     };
   };
 }
