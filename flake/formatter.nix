@@ -13,9 +13,9 @@ writeShellApplication {
   ];
   text = ''
     format_file() {
-        alejandra "$1"
-        deadnix -e "$1"
-        statix fix "$1"
+      alejandra "$1"
+      deadnix -e "$1"
+      statix fix "$1"
     }
 
     if [ -d "$1" ]; then
